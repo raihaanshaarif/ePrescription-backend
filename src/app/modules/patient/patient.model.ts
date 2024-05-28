@@ -1,49 +1,76 @@
-import { Schema, model } from 'mongoose'
-import {
-  IPatient,
-  PatientModel,
-  Gender,
-  Religion,
-  Occupation,
-} from './patient.interface'
+// patient.model.ts
 
-// Define the Patient schema
-const patientSchema = new Schema<IPatient, PatientModel>(
+import { Schema, model, Document } from 'mongoose'
+import { IPatient, PatientModel } from './patient.interface'
+
+const generatePatientID = (): string => {
+  return Math.floor(1000000 + Math.random() * 9000000).toString()
+}
+
+const patientSchema = new Schema<IPatient>(
   {
+    patientID: {
+      type: String,
+      required: true,
+      unique: true,
+      default: generatePatientID,
+    },
     fullName: { type: String, required: true },
     ageYear: { type: Number, required: true },
-    ageMonth: { type: Number, required: false },
-    ageDay: { type: Number, required: false },
-    gender: { type: String, enum: Object.values(Gender), required: false },
-    bloodGroup: { type: String, required: false },
-    mobileNo: { type: String, required: false },
-    email: { type: String, required: false, unique: true },
-    address: { type: String, required: false },
-    guardianName: { type: String, required: false },
-    guardianPhone: { type: String, required: false },
-    religion: { type: String, enum: Object.values(Religion), required: false },
+    ageMonth: { type: Number },
+    ageDay: { type: Number },
+    gender: { type: String, enum: ['male', 'female', 'other'] },
+    bloodGroup: { type: String },
+    mobileNo: { type: String, unique: true },
+    email: { type: String },
+    address: { type: String },
+    guardianName: { type: String },
+    guardianPhone: { type: String },
+    religion: {
+      type: String,
+      enum: ['Islam', 'Hinduism', 'Buddhism', 'Christianity', 'Other'],
+    },
     occupation: {
       type: String,
-      enum: Object.values(Occupation),
-      required: false,
+      enum: [
+        'Job',
+        'Business',
+        'Service',
+        'Student',
+        'Housewife',
+        'Unemployed',
+        'Other',
+      ],
     },
-    prescriptions: [
-      { type: Schema.Types.ObjectId, ref: 'Prescription', required: false },
-    ],
+    prescriptions: [{ type: Schema.Types.ObjectId, ref: 'Prescription' }],
   },
   {
     timestamps: true,
     toJSON: {
       virtuals: true,
-      transform: (doc, ret) => {
-        delete ret.password
-        return ret
-      },
     },
   },
 )
 
-// Static method to check if patient exists by mobile number
+// Ensure unique patientID before saving the document
+patientSchema.pre('save', async function (next) {
+  const patient = this as IPatient & Document
+
+  if (!patient.patientID) {
+    let isUnique = false
+    while (!isUnique) {
+      const newPatientID = generatePatientID()
+      const existingPatient = await Patient.findOne({ patientID: newPatientID })
+
+      if (!existingPatient) {
+        patient.patientID = newPatientID
+        isUnique = true
+      }
+    }
+  }
+  next()
+})
+
 patientSchema.statics.isPatientExist = async function (
   mobileNo: string,
 ): Promise<Pick<
@@ -55,5 +82,5 @@ patientSchema.statics.isPatientExist = async function (
     { _id: 1, fullName: 1, email: 1, prescriptions: 1 },
   ).lean()
 }
-// Export the Patient model
+
 export const Patient = model<IPatient, PatientModel>('Patient', patientSchema)

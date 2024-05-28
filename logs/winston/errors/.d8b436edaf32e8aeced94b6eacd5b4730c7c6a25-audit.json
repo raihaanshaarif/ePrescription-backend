@@ -1,0 +1,45 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "/Users/raihan/Desktop/My Files/Programming/eprescription/ePrescription-backend/logs/winston/errors/.d8b436edaf32e8aeced94b6eacd5b4730c7c6a25-audit.json",
+    "files": [
+        {
+            "date": 1716914464013,
+            "name": "/Users/raihan/Desktop/My Files/Programming/eprescription/ePrescription-backend/logs/winston/errors/2024-28-05-22-error.log",
+            "hash": "c882294d1900ba055a95dc0df45635fb65c3523b0abedb4f751626f87c406382"
+        },
+        {
+            "date": 1716917597403,
+            "name": "/Users/raihan/Desktop/My Files/Programming/eprescription/ePrescription-backend/logs/winston/errors/2024-28-05-23-error.log",
+            "hash": "9179fb8606b2c5d0ed625624ac75b8c9e2c76ad41b186f30807681c9bee4f5ca"
+        },
+        {
+            "date": 1716919218946,
+            "name": "/Users/raihan/Desktop/My Files/Programming/eprescription/ePrescription-backend/logs/winston/errors/2024-29-05-00-error.log",
+            "hash": "1f1d92666b6f45beb5c78c23e4d6cc3b3db405eb02d14b243d212bef68988133"
+        },
+        {
+            "date": 1716924974164,
+            "name": "/Users/raihan/Desktop/My Files/Programming/eprescription/ePrescription-backend/logs/winston/errors/2024-29-05-01-error.log",
+            "hash": "8ceb487c6dfcba981dfb0ec48433dfdf45699a9c25c65c728cea2b15bc1a4da5"
+        },
+        {
+            "date": 1716926457868,
+            "name": "/Users/raihan/Desktop/My Files/Programming/eprescription/ePrescription-backend/logs/winston/errors/2024-29-05-02-error.log",
+            "hash": "e25d9e8271df6789a7a203e553075c9032176c0df221dbd9767b9b08eebe16c5"
+        },
+        {
+            "date": 1716930132742,
+            "name": "/Users/raihan/Desktop/My Files/Programming/eprescription/ePrescription-backend/logs/winston/errors/2024-29-05-03-error.log",
+            "hash": "b20b0fe5a3edf11c809d267d8b63113d6f50da7fb6e51a0b02d1973b78e466ac"
+        },
+        {
+            "date": 1716933679805,
+            "name": "/Users/raihan/Desktop/My Files/Programming/eprescription/ePrescription-backend/logs/winston/errors/2024-29-05-04-error.log",
+            "hash": "8794186af6828970c2c6023e417dfcc6b21a31f3c71182d264e43b7771a1b51c"
+        }
+    ],
+    "hashType": "sha256"
+}

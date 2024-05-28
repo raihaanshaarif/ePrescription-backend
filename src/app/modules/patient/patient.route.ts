@@ -1,24 +1,24 @@
+// patient.routes.ts
+
 import express from 'express'
-
-import validateRequest from '../../middlewares/validateRequest'
-import { PatientValidation } from './patient.validation'
 import { PatientController } from './patient.controller'
+import { PatientValidation } from './patient.validation'
+import validateRequest from '../../middlewares/validateRequest'
 
-const patientRouter = express.Router()
+const router = express.Router()
 
-patientRouter.post(
-  '/create-patient',
+router.post(
+  '/',
   validateRequest(PatientValidation.createPatientZodSchema),
   PatientController.createPatient,
 )
-
-patientRouter.get('/:id', PatientController.getSinglePatient)
-patientRouter.get('/', PatientController.getAllPatient)
-patientRouter.patch(
+router.get('/', PatientController.getAllPatients)
+router.get('/:id', PatientController.getSinglePatient)
+router.patch(
   '/:id',
   validateRequest(PatientValidation.updatePatientZodSchema),
   PatientController.updatePatient,
 )
-patientRouter.delete('/:id', PatientController.deletePatient)
+router.delete('/:id', PatientController.deletePatient)
 
-export const PatientRouter = patientRouter
+export const PatientRouter = router

@@ -1,0 +1,4 @@
+Wed May 29 2024 02:14:22 GMT+0600 (Bangladesh Standard Time) 2:14:22 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ Schema hasn't been registered for model "Investigation".
+Use mongoose.model(name, schema)
+Wed May 29 2024 02:34:33 GMT+0600 (Bangladesh Standard Time) 2:34:33 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ Schema hasn't been registered for model "Medicine".
+Use mongoose.model(name, schema)

@@ -26,6 +26,7 @@ export enum Occupation {
 
 export interface IPatient {
   _id?: Types.ObjectId
+  patientID: string
   fullName: string
   ageYear: number
   ageMonth?: number

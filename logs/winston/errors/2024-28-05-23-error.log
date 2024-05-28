@@ -1,0 +1,20 @@
+Tue May 28 2024 23:38:06 GMT+0600 (Bangladesh Standard Time) 23:38:6 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ Phone Already Exists
+Tue May 28 2024 23:38:13 GMT+0600 (Bangladesh Standard Time) 23:38:13 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ Phone Already Exists
+Tue May 28 2024 23:40:18 GMT+0600 (Bangladesh Standard Time) 23:40:18 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ Chief complaint already exists
+Tue May 28 2024 23:40:35 GMT+0600 (Bangladesh Standard Time) 23:40:35 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ Chief complaint already exists
+Tue May 28 2024 23:43:22 GMT+0600 (Bangladesh Standard Time) 23:43:22 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "received": "Female",
+    "code": "invalid_enum_value",
+    "options": [
+      "male",
+      "female",
+      "other"
+    ],
+    "path": [
+      "body",
+      "gender"
+    ],
+    "message": "Invalid enum value. Expected 'male' | 'female' | 'other', received 'Female'"
+  }
+]

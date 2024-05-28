@@ -1,0 +1,28 @@
+Wed May 29 2024 03:03:03 GMT+0600 (Bangladesh Standard Time) 3:3:3 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ Phone Already Exists
+Wed May 29 2024 03:03:35 GMT+0600 (Bangladesh Standard Time) 3:3:35 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ User Already Exists
+Wed May 29 2024 03:03:42 GMT+0600 (Bangladesh Standard Time) 3:3:42 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ User Already Exists
+Wed May 29 2024 03:03:50 GMT+0600 (Bangladesh Standard Time) 3:3:50 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: email_1 dup key: { email: "john.doe@example.com" }
+Wed May 29 2024 03:22:25 GMT+0600 (Bangladesh Standard Time) 3:22:25 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: email_1 dup key: { email: "john.doe@example.co" }
+Wed May 29 2024 03:22:36 GMT+0600 (Bangladesh Standard Time) 3:22:36 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "validation": "email",
+    "code": "invalid_string",
+    "message": "Invalid email address",
+    "path": [
+      "body",
+      "email"
+    ]
+  }
+]
+Wed May 29 2024 03:22:47 GMT+0600 (Bangladesh Standard Time) 3:22:47 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:23:04 GMT+0600 (Bangladesh Standard Time) 3:23:4 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:23:19 GMT+0600 (Bangladesh Standard Time) 3:23:19 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:28:34 GMT+0600 (Bangladesh Standard Time) 3:28:34 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:29:35 GMT+0600 (Bangladesh Standard Time) 3:29:35 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:30:06 GMT+0600 (Bangladesh Standard Time) 3:30:6 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:31:18 GMT+0600 (Bangladesh Standard Time) 3:31:18 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:32:17 GMT+0600 (Bangladesh Standard Time) 3:32:17 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:32:19 GMT+0600 (Bangladesh Standard Time) 3:32:19 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:33:41 GMT+0600 (Bangladesh Standard Time) 3:33:41 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:34:21 GMT+0600 (Bangladesh Standard Time) 3:34:21 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }
+Wed May 29 2024 03:34:30 GMT+0600 (Bangladesh Standard Time) 3:34:30 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ E11000 duplicate key error collection: eprescription-backend.patients index: userID_1 dup key: { userID: null }

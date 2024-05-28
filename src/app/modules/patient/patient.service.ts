@@ -1,34 +1,36 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+// patient.service.ts
 
-import { SortOrder } from 'mongoose'
-import { paginationHelpers } from '../../../helpers/paginationHelpers'
+import { IPatient } from './patient.interface'
+import { Patient } from './patient.model'
 import ApiError from '../../../errors/apiError'
 import httpStatus from 'http-status'
-
 import { IPaginationOptions } from '../../../interfaces/pagination'
 import { IGenericResponse } from '../../../interfaces/common'
-import { IPatient, IPatientFilters } from './patient.interface'
-import { Patient } from './patient.model'
-import { patientSearchableFields } from './patient.constant'
+import { paginationHelpers } from '../../../helpers/paginationHelpers'
 
 const createPatient = async (data: IPatient): Promise<IPatient> => {
-  if (!data.mobileNo) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Mobile number is required')
-  }
-
-  const isPatientExist = await Patient.isPatientExist(data.mobileNo)
-  if (isPatientExist) {
-    throw new ApiError(httpStatus.IM_USED, 'Phone Already Exists')
+  // Ensure unique patientID if not provided
+  if (!data.patientID) {
+    let isUnique = false
+    while (!isUnique) {
+      const patientID = Math.floor(1000000 + Math.random() * 9000000).toString()
+      const existingPatient = await Patient.findOne({ patientID })
+      if (!existingPatient) {
+        data.patientID = patientID
+        isUnique = true
+      }
+    }
   }
 
   const result = await Patient.create(data)
   return result
 }
+
 const getAllPatients = async (
-  filters: IPatientFilters,
+  filters: any,
   paginationOptions: IPaginationOptions,
 ): Promise<IGenericResponse<IPatient[]>> => {
-  const { searchTerm, ...filtersData } = filters
+  const { searchTerm, patientID, mobileNo, ...filtersData } = filters
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(paginationOptions)
 
@@ -36,13 +38,21 @@ const getAllPatients = async (
 
   if (searchTerm) {
     andConditions.push({
-      $or: patientSearchableFields.map(field => ({
-        [field]: {
-          $regex: searchTerm,
-          $options: 'i',
-        },
-      })),
+      $or: [
+        { patientID: { $regex: searchTerm, $options: 'i' } },
+        { mobileNo: { $regex: searchTerm, $options: 'i' } },
+        { fullName: { $regex: searchTerm, $options: 'i' } },
+        // Add other fields you want to search by
+      ],
     })
+  }
+
+  if (patientID) {
+    andConditions.push({ patientID })
+  }
+
+  if (mobileNo) {
+    andConditions.push({ mobileNo })
   }
 
   if (Object.keys(filtersData).length) {
@@ -53,11 +63,12 @@ const getAllPatients = async (
     })
   }
 
-  const sortConditions: { [key: string]: SortOrder } = {}
+  const sortConditions: { [key: string]: any } = {}
 
   if (sortBy && sortOrder) {
     sortConditions[sortBy] = sortOrder
   }
+
   const whereConditions =
     andConditions.length > 0 ? { $and: andConditions } : {}
 
@@ -66,7 +77,7 @@ const getAllPatients = async (
     .skip(skip)
     .limit(limit)
 
-  const total = await Patient.countDocuments()
+  const total = await Patient.countDocuments(whereConditions)
 
   return {
     meta: {
@@ -87,22 +98,10 @@ const updatePatient = async (
   id: string,
   payload: Partial<IPatient>,
 ): Promise<IPatient | null> => {
-  const isExist = await Patient.findOne({ _id: id })
-  if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Patient not found')
-  }
-  console.log(id, payload)
-  const { ...userData } = payload
-  const updatedUserData = { ...userData }
-
-  // dynamically handling
-
-  const result = await Patient.findOneAndUpdate({ _id: id }, updatedUserData, {
-    new: true,
-  })
-
+  const result = await Patient.findByIdAndUpdate(id, payload, { new: true })
   return result
 }
+
 const deletePatient = async (id: string): Promise<IPatient | null> => {
   const result = await Patient.findByIdAndDelete(id)
   return result
