@@ -1,5 +1,4 @@
 import httpStatus from 'http-status'
-
 import { IUser } from '../user/user.interface'
 import { IRefreshTokenResponse } from './auth.interface'
 import { jwtHelpers } from '../../../helpers/jwtHelpers'
@@ -8,17 +7,14 @@ import { Secret } from 'jsonwebtoken'
 import ApiError from '../../../errors/apiError'
 import { User } from '../user/user.model'
 
-// const userSignup = async (user: IUser): Promise<IUser> => {
-//   const newUser = await User.create(user)
-//   if (!newUser) {
-//     throw new ApiError(httpStatus.BAD_REQUEST, 'Failed to create user')
-//   }
-//   return newUser.toObject()
-// }
+// Helper function to parse dd/mm/yyyy date strings
+const parseDate = (dateString: string): Date => {
+  const [day, month, year] = dateString.split('/').map(Number)
+  return new Date(year, month - 1, day)
+}
 
 const userLogin = async (payload: Pick<IUser, 'email' | 'password'>) => {
   const { email: userEmail, password } = payload
-  // console.log(email);
 
   // user exists:
   const user = await User.isUserExist(userEmail)
@@ -34,9 +30,13 @@ const userLogin = async (payload: Pick<IUser, 'email' | 'password'>) => {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Password is incorrect')
   }
 
+  // check if user expiryDate is passed
+  if (user.expiryDate && parseDate(user.expiryDate) < new Date()) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'User account has expired')
+  }
+
   // create access token & refresh token
   const { _id, role, email } = user
-  // console.log(user);
   const accessToken = jwtHelpers.createToken(
     { _id, role, email },
     config.jwt.secret as Secret,
@@ -67,15 +67,18 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
     throw new ApiError(httpStatus.FORBIDDEN, 'Invalid Refresh Token')
   }
 
-  console.log(verifiedToken)
-
   const { _id } = verifiedToken
 
   // if user exist in database
-  const user = await User.findById(_id)
+  const user = await User.findById(_id).lean()
 
   if (!user) {
     throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist')
+  }
+
+  // check if user expiryDate is passed
+  if (user.expiryDate && parseDate(user.expiryDate) < new Date()) {
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'User account has expired')
   }
 
   // generate new token

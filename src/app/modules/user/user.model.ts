@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-this-alias */
 import { Schema, UpdateQuery, model } from 'mongoose'
 import { IUser, UserModel } from './user.interface'
 import bcrypt from 'bcrypt'
@@ -7,39 +6,37 @@ import { userRoles } from './user.constant'
 
 const userSchema = new Schema<IUser, UserModel>(
   {
-    name: {
-      type: String,
-    },
-    email: {
-      type: String,
-      unique: true,
-      required: true,
-    },
-
-    password: {
-      type: String,
-      required: true,
-      // select: 0,
-    },
-    role: {
-      type: String,
-      enum: userRoles,
-    },
+    name: { type: String },
+    email: { type: String, unique: true, required: true },
+    password: { type: String, required: true },
+    role: { type: String, enum: userRoles },
+    address: { type: String, required: true },
+    phone: { type: String, required: true },
+    designation: { type: String },
+    startDate: { type: String, required: true },
+    expiryDate: { type: String, required: true },
   },
   {
     timestamps: true,
     toJSON: {
       virtuals: true,
+      transform: (doc, ret) => {
+        delete ret.password
+        return ret
+      },
     },
   },
 )
-// isUserExist by phoneNumber
+
 userSchema.statics.isUserExist = async function (
   email: string,
-): Promise<Pick<IUser, 'password' | '_id' | 'role' | 'email' | 'name'> | null> {
+): Promise<Pick<
+  IUser,
+  '_id' | 'password' | 'role' | 'email' | 'name' | 'expiryDate'
+> | null> {
   return await this.findOne(
     { email },
-    { password: 1, role: 1, email: 1, name: 1 },
+    { password: 1, role: 1, email: 1, name: 1, expiryDate: 1 },
   ).lean()
 }
 

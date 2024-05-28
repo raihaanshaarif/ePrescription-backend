@@ -1,12 +1,10 @@
-// ['page', 'limit', 'sortBy', 'sortOrder']
-
-const pick = <T extends object, k extends keyof T>(
+const pick = <T extends object, K extends keyof T>(
   obj: T,
-  keys: k[],
+  keys: K[],
 ): Partial<T> => {
   const finalObj: Partial<T> = {}
   for (const key of keys) {
-    if (obj && Object.hasOwnProperty.call(obj, key)) {
+    if (key in obj) {
       finalObj[key] = obj[key]
     }
   }

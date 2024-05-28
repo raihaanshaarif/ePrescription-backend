@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "G:\\@My Project\\eprescription-api\\logs\\winston\\sueccess\\.fc3f9cb787bb634043ced2c82cb38ee087cc7a52-audit.json",
+    "files": [
+        {
+            "date": 1716891643824,
+            "name": "G:\\@My Project\\eprescription-api\\logs\\winston\\sueccess\\2024-28-05-16-success.log",
+            "hash": "f02f7f4fbd35e6d128d6462fe5cba28cdc3c0e051d9c6e868ad684a053a9c86a"
+        },
+        {
+            "date": 1716894019890,
+            "name": "G:\\@My Project\\eprescription-api\\logs\\winston\\sueccess\\2024-28-05-17-success.log",
+            "hash": "963b48da002a4a79791cfdf79ff77ce2ddda5dddd0cd5207abf942e8a9977b75"
+        },
+        {
+            "date": 1716897881279,
+            "name": "G:\\@My Project\\eprescription-api\\logs\\winston\\sueccess\\2024-28-05-18-success.log",
+            "hash": "8261210855a65414574843be1292944349cbd9c9d77a499e5113ced5fec6f600"
+        }
+    ],
+    "hashType": "sha256"
+}
