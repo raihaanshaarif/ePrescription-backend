@@ -5,8 +5,8 @@ import { IOnExamination, OnExaminationModel } from './onExamination.interface'
 
 const onExaminationSchema = new Schema<IOnExamination>(
   {
-    examsEnglish: { type: String },
-    examsBangla: { type: String },
+    nameEnglish: { type: String },
+    nameBangla: { type: String },
   },
   {
     timestamps: true,

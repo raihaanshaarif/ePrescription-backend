@@ -1,2 +1,2 @@
 // investigation.constant.ts
-export const investigationFields = ['name']
+export const investigationFields = ['nameEnglish']

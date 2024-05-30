@@ -21,7 +21,7 @@ const createInvestigation: RequestHandler = catchAsync(
 )
 
 const getAllInvestigations = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, ['name'])
+  const filters = pick(req.query, ['nameEnglish'])
   const paginationOptions = pick(req.query, paginationFields)
 
   const result = await InvestigationService.getAllInvestigations(

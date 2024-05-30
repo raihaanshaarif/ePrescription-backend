@@ -1,2 +1,2 @@
 // onExamination.constant.ts
-export const onExaminationFields = ['examsEnglish', 'examsBangla']
+export const onExaminationFields = ['nameEnglish', 'nameBangla']

@@ -5,22 +5,22 @@ import { z } from 'zod'
 const createOnExaminationZodSchema = z.object({
   body: z
     .object({
-      examsEnglish: z.string().optional(),
-      examsBangla: z.string().optional(),
+      nameEnglish: z.string().optional(),
+      nameBangla: z.string().optional(),
     })
-    .refine(data => data.examsEnglish || data.examsBangla, {
-      message: 'Either examsEnglish or examsBangla must be provided',
+    .refine(data => data.nameEnglish || data.nameBangla, {
+      message: 'Either nameEnglish or nameBangla must be provided',
     }),
 })
 
 const updateOnExaminationZodSchema = z.object({
   body: z
     .object({
-      examsEnglish: z.string().optional(),
-      examsBangla: z.string().optional(),
+      nameEnglish: z.string().optional(),
+      nameBangla: z.string().optional(),
     })
-    .refine(data => data.examsEnglish || data.examsBangla, {
-      message: 'Either examsEnglish or examsBangla must be provided',
+    .refine(data => data.nameEnglish || data.nameBangla, {
+      message: 'Either nameEnglish or nameBangla must be provided',
     }),
 })
 

@@ -14,7 +14,9 @@ import { SortOrder } from 'mongoose'
 const createInvestigation = async (
   data: IInvestigation,
 ): Promise<IInvestigation> => {
-  const isDuplicate = await Investigation.findOne({ name: data.name })
+  const isDuplicate = await Investigation.findOne({
+    nameEnglish: data.nameEnglish,
+  })
 
   if (isDuplicate) {
     throw new ApiError(httpStatus.IM_USED, 'Investigation already exists')
@@ -36,7 +38,7 @@ const getAllInvestigations = async (
 
   if (searchTerm) {
     andConditions.push({
-      $or: [{ name: { $regex: searchTerm, $options: 'i' } }],
+      $or: [{ nameEnglish: { $regex: searchTerm, $options: 'i' } }],
     })
   }
 

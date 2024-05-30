@@ -5,7 +5,7 @@ import { IInvestigation, InvestigationModel } from './investigation.interface'
 
 const investigationSchema = new Schema<IInvestigation>(
   {
-    name: { type: String, required: true },
+    nameEnglish: { type: String, required: true },
   },
   {
     timestamps: true,

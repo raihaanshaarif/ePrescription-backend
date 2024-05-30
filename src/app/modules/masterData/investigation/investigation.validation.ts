@@ -4,7 +4,7 @@ import { z } from 'zod'
 
 const createInvestigationZodSchema = z.object({
   body: z.object({
-    name: z.string({
+    nameEnglish: z.string({
       required_error: 'Name is required!',
     }),
   }),
@@ -12,7 +12,7 @@ const createInvestigationZodSchema = z.object({
 
 const updateInvestigationZodSchema = z.object({
   body: z.object({
-    name: z.string().optional(),
+    nanameEnglish: z.string().optional(),
   }),
 })
 
