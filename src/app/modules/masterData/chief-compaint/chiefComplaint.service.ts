@@ -15,7 +15,7 @@ const createChiefComplaint = async (
   data: IChiefComplaint,
 ): Promise<IChiefComplaint> => {
   const isDuplicate = await ChiefComplaint.findOne({
-    $or: [{ nameEnglish: data.nameEnglish }, { nameBangla: data.nameBangla }],
+    $or: [{ nameEnglish: data.nameEnglish }],
   })
 
   if (isDuplicate) {

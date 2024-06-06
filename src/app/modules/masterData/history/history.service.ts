@@ -12,7 +12,7 @@ import { IGenericResponse } from '../../../../interfaces/common'
 
 const createHistory = async (data: IHistory): Promise<IHistory> => {
   const isDuplicate = await History.findOne({
-    $or: [{ nameEnglish: data.nameEnglish }, { nameBangla: data.nameBangla }],
+    $or: [{ nameEnglish: data.nameEnglish }],
   })
 
   if (isDuplicate) {
