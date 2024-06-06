@@ -37,14 +37,9 @@ const createPatientZodSchema = z.object({
     fullName: z.string({
       required_error: 'Full name is required!',
     }),
-    ageYear: z
-      .number({
-        required_error: 'Age in years is required!',
-      })
-      .int()
-      .nonnegative(),
-    ageMonth: z.number().int().nonnegative().optional(),
-    ageDay: z.number().int().nonnegative().optional(),
+    ageYear: z.string().optional(),
+    ageMonth: z.string().optional(),
+    ageDay: z.string().optional(),
     gender: z.nativeEnum(Gender).optional(),
     bloodGroup: z.string().optional(),
     mobileNo: z.string().optional(),
@@ -54,6 +49,7 @@ const createPatientZodSchema = z.object({
     guardianPhone: z.string().optional(),
     religion: z.nativeEnum(Religion).optional(),
     occupation: z.nativeEnum(Occupation).optional(),
+    maritalStatus: z.string().optional(),
     prescriptions: z
       .array(
         z.string().refine(val => Types.ObjectId.isValid(val), {
@@ -67,9 +63,9 @@ const createPatientZodSchema = z.object({
 const updatePatientZodSchema = z.object({
   body: z.object({
     fullName: z.string().optional(),
-    ageYear: z.number().int().nonnegative().optional(),
-    ageMonth: z.number().int().nonnegative().optional(),
-    ageDay: z.number().int().nonnegative().optional(),
+    ageYear: z.string().optional(),
+    ageMonth: z.string().optional(),
+    ageDay: z.string().optional(),
     gender: z.nativeEnum(Gender).optional(),
     bloodGroup: z.string().optional(),
     mobileNo: z.string().optional(),
@@ -79,6 +75,7 @@ const updatePatientZodSchema = z.object({
     guardianPhone: z.string().optional(),
     religion: z.nativeEnum(Religion).optional(),
     occupation: z.nativeEnum(Occupation).optional(),
+    maritalStatus: z.string().optional(),
     prescriptions: z
       .array(
         z.string().refine(val => Types.ObjectId.isValid(val), {

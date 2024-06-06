@@ -14,7 +14,7 @@ const createDoseDuration = async (
   data: IDoseDuration,
 ): Promise<IDoseDuration> => {
   const isDuplicate = await DoseDuration.findOne({
-    $or: [{ nameEnglish: data.nameEnglish }, { nameBangla: data.nameBangla }],
+    $or: [{ nameEnglish: data.nameEnglish }],
   })
 
   if (isDuplicate) {

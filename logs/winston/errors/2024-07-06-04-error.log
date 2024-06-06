@@ -1,0 +1,46 @@
+Fri Jun 07 2024 04:02:31 GMT+0600 (Bangladesh Standard Time) 4:2:31 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "body",
+      "ageYear"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+Fri Jun 07 2024 04:05:55 GMT+0600 (Bangladesh Standard Time) 4:5:55 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "number",
+    "received": "string",
+    "path": [
+      "body",
+      "ageYear"
+    ],
+    "message": "Expected number, received string"
+  }
+]
+Fri Jun 07 2024 04:08:30 GMT+0600 (Bangladesh Standard Time) 4:8:30 [right meow!] error: 🐱‍🏍 globalErrorHandler ~~ [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "body",
+      "ageMonth"
+    ],
+    "message": "Expected string, received number"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "number",
+    "path": [
+      "body",
+      "ageDay"
+    ],
+    "message": "Expected string, received number"
+  }
+]

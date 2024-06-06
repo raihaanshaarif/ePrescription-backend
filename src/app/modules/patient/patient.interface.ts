@@ -28,9 +28,9 @@ export interface IPatient {
   _id?: Types.ObjectId
   patientID: string
   fullName: string
-  ageYear: number
-  ageMonth?: number
-  ageDay?: number
+  ageYear: string
+  ageMonth?: string
+  ageDay?: string
   gender?: Gender
   bloodGroup?: string
   mobileNo?: string
@@ -40,6 +40,7 @@ export interface IPatient {
   guardianPhone?: string
   religion?: Religion
   occupation?: Occupation
+  maritalStatus?: string
   prescriptions?: Types.ObjectId[] // Array of prescription IDs
 }
 

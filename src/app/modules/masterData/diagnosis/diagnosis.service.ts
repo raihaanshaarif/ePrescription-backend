@@ -12,7 +12,7 @@ import { IGenericResponse } from '../../../../interfaces/common'
 
 const createDiagnosis = async (data: IDiagnosis): Promise<IDiagnosis> => {
   const isDuplicate = await Diagnosis.findOne({
-    $or: [{ nameEnglish: data.nameEnglish }, { nameBangla: data.nameBangla }],
+    $or: [{ nameEnglish: data.nameEnglish }],
   })
 
   if (isDuplicate) {

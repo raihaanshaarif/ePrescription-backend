@@ -15,7 +15,7 @@ const createOnExamination = async (
   data: IOnExamination,
 ): Promise<IOnExamination> => {
   const isDuplicate = await OnExamination.findOne({
-    $or: [{ nameEnglish: data.nameEnglish }, { nameBangla: data.nameBangla }],
+    $or: [{ nameEnglish: data.nameEnglish }],
   })
 
   if (isDuplicate) {
