@@ -15,6 +15,7 @@ import { SpecialAdviseRouter } from '../modules/masterData/specialAdvise/special
 import { PrescriptionRouter } from '../modules/prescription/prescription.routes'
 import { InvestigationRouter } from '../modules/masterData/investigation/investigation.routes'
 import { MedicineRouter } from '../modules/masterData/medicine/medicine.routes'
+import { AppointmentRouter } from '../modules/appointment/appointment.router'
 
 const router = express.Router()
 
@@ -78,6 +79,10 @@ const moduleRoutes = [
   {
     path: '/prescription',
     route: PrescriptionRouter, // Add the prescription route
+  },
+  {
+    path: '/appointment',
+    route: AppointmentRouter, // Add the prescription route
   },
 ]
 
