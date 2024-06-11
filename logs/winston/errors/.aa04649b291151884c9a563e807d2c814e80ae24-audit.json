@@ -6,11 +6,6 @@
     "auditLog": "G:\\@My Project\\eprescription-api\\logs\\winston\\errors\\.aa04649b291151884c9a563e807d2c814e80ae24-audit.json",
     "files": [
         {
-            "date": 1716891643831,
-            "name": "G:\\@My Project\\eprescription-api\\logs\\winston\\errors\\2024-28-05-16-error.log",
-            "hash": "72799722a6f1693360f7815b972a320952722fab511b85e44e52a07d0cc22231"
-        },
-        {
             "date": 1716894019896,
             "name": "G:\\@My Project\\eprescription-api\\logs\\winston\\errors\\2024-28-05-17-error.log",
             "hash": "41b323ea272942a6b585cc4bc030bea75dac271e7a27a14a21df4327575b60da"
@@ -129,6 +124,21 @@
             "date": 1718024429095,
             "name": "G:\\@My Project\\eprescription-api\\logs\\winston\\errors\\2024-10-06-19-error.log",
             "hash": "4639295153db32181e6df12707a693dd650e19702d15c1a19dad2486b246709f"
+        },
+        {
+            "date": 1718095487295,
+            "name": "G:\\@My Project\\eprescription-api\\logs\\winston\\errors\\2024-11-06-14-error.log",
+            "hash": "edecec56682347425695f3eed7a712d6f1989325af436569a3b681f47bfc67d8"
+        },
+        {
+            "date": 1718096502976,
+            "name": "G:\\@My Project\\eprescription-api\\logs\\winston\\errors\\2024-11-06-15-error.log",
+            "hash": "a08a00b6f0fbd0e7c351d03f46f8ee2c3436359433ecc7836cfdff8ef758ee67"
+        },
+        {
+            "date": 1718101854293,
+            "name": "G:\\@My Project\\eprescription-api\\logs\\winston\\errors\\2024-11-06-16-error.log",
+            "hash": "f4219559c4f7c8a21a7fc5e4d699463a031227dc79d57728697d807d9bbd4313"
         }
     ],
     "hashType": "sha256"

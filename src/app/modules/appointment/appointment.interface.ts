@@ -26,8 +26,8 @@ export interface IAppointment {
   patientId: Types.ObjectId
   doctorId: Types.ObjectId
   branchId: Types.ObjectId
-  date: string // ISO 8601 date string
-  time: string // ISO 8601 time string
+  date: Date
+  time: string
   status: AppointmentStatus
   appointmentType: AppointmentType
 }

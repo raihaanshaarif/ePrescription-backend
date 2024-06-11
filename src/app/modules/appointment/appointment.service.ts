@@ -1,5 +1,3 @@
-// File path: services/appointment.service.ts
-
 import ApiError from '../../../errors/apiError'
 import httpStatus from 'http-status'
 import { IPaginationOptions } from '../../../interfaces/pagination'
@@ -8,9 +6,81 @@ import { paginationHelpers } from '../../../helpers/paginationHelpers'
 import { IAppointment } from './appointment.interface'
 import { Appointment } from './appointment.model'
 
+// Parse date from dd/mm/yyyy format to a Date object
+const parseDate = (dateStr: string): Date => {
+  const [day, month, year] = dateStr.split('/').map(Number)
+  return new Date(year, month - 1, day)
+}
+
+// Generate a serial ID based on the current date and existing serials
+const generateSerialID = async (date: Date): Promise<string> => {
+  const dateStr = `${date.getDate().toString().padStart(2, '0')}/${(date.getMonth() + 1).toString().padStart(2, '0')}/${date.getFullYear()}`
+  const dateStart = new Date(date.setHours(0, 0, 0, 0))
+  const dateEnd = new Date(date.setHours(23, 59, 59, 999))
+
+  // Debugging: Log the date range
+  console.log(`Finding appointments between ${dateStart} and ${dateEnd}`)
+
+  const latestAppointment = await Appointment.findOne({
+    date: {
+      $gte: dateStart,
+      $lt: dateEnd,
+    },
+  }).sort({ serialId: -1 })
+
+  // Debugging: Log the latest appointment found
+  console.log('Latest appointment found:', latestAppointment)
+
+  let newSerialId
+  if (latestAppointment && latestAppointment.serialId) {
+    const lastSerialId = parseInt(
+      latestAppointment.serialId.split('-').pop() as string,
+      10,
+    )
+    newSerialId = (lastSerialId + 1).toString().padStart(3, '0')
+  } else {
+    newSerialId = '001'
+  }
+
+  return `${dateStr.replace(/\//g, '')}-${newSerialId}`
+}
+
 const createAppointment = async (data: IAppointment): Promise<IAppointment> => {
-  const result = await Appointment.create(data)
-  return result
+  let retries = 5
+  while (retries > 0) {
+    try {
+      // Ensure the date is a Date object
+      const dateObj = new Date(data.date)
+      // Generate serial ID before creating the appointment
+      const serialId = await generateSerialID(dateObj)
+      data.serialId = serialId
+      data.appointmentNumber = serialId
+
+      const result = await Appointment.create(data)
+      return result
+    } catch (error) {
+      if (
+        error instanceof Error &&
+        'code' in error &&
+        (error as any).code === 11000
+      ) {
+        // Duplicate key error
+        retries -= 1
+        if (retries === 0) {
+          throw new ApiError(
+            httpStatus.INTERNAL_SERVER_ERROR,
+            'Failed to generate unique serialId after multiple attempts',
+          )
+        }
+      } else {
+        throw error
+      }
+    }
+  }
+  throw new ApiError(
+    httpStatus.INTERNAL_SERVER_ERROR,
+    'Failed to create appointment',
+  )
 }
 
 const getAllAppointments = async (
